@@ -142,4 +142,9 @@
       <Name>ToDoListDemo</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add.png" />
+    <BundleResource Include="Resources\ic_add%402x.png" />
+    <BundleResource Include="Resources\ic_add%403x.png" />
+  </ItemGroup>
 </Project>
