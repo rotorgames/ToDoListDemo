@@ -19,4 +19,17 @@
     <ProjectReference Include="..\ToDoListDemo.Abstractions\ToDoListDemo.Abstractions.csproj" />
     <ProjectReference Include="..\ToDoListDemo.Services\ToDoListDemo.Services.csproj" />
   </ItemGroup>
+    <Folder Include="LocalizableResources\" />
+    <Folder Include="Markups\" />
+  <ItemGroup>
+    <EmbeddedResource Update="LocalizableResources\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="LocalizableResources\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
