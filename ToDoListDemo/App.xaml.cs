@@ -1,28 +1,35 @@
 ﻿using System;
+using System.IO;
+using Prism.Ioc;
+using Prism.Unity;
+using ToDoListDemo.Abstractions.Tasks;
+using ToDoListDemo.Services.Tasks;
+using ToDoListDemo.ViewModels;
+using ToDoListDemo.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ToDoListDemo
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            await NavigationService.NavigateAsync("/NavigationPage/TaskListView");
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "main.db3");
 
-        protected override void OnSleep()
-        {
-        }
+            // Services
+            containerRegistry.RegisterInstance<ITaskStorageService>(new TaskStorageService(databasePath));
 
-        protected override void OnResume()
-        {
+            // Navigation
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<TaskListView, TaskListViewModel>();
+            containerRegistry.RegisterForNavigation<TaskEditorView, TaskEditorViewModel>();
         }
     }
 }

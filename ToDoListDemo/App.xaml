@@ -1,8 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDoListDemo.App">
+<modularity:PrismApplication
+    x:Class="ToDoListDemo.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:modularity="http://prismlibrary.com"
+    xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:markups="clr-namespace:ToDoListDemo.Markups">
     <Application.Resources>
+        <Color x:Key="PrimaryColor">#1976d2</Color>
+        <Color x:Key="LightPrimaryColor">#63a4ff</Color>
+        <Color x:Key="DarjPrimaryColor">#004ba0</Color>
 
+        <Color x:Key="OpenTaskColor">LightBlue</Color>
+        <Color x:Key="InProcessTaskColor">Orange</Color>
+        <Color x:Key="FinishedTaskColor">Green</Color>
+
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="#EEEEEE"/>
+        </Style>
+
+        <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="BarTextColor" Value="White"/>
+        </Style>
+
+        <Style x:Key="OpacityTouchStyle" TargetType="View" ApplyToDerivedTypes="True">
+            <Setter Property="toolkit:TouchEffect.IsAvailable" Value="True"/>
+            <Setter Property="toolkit:TouchEffect.AnimationDuration" Value="50"/>
+            <Setter Property="toolkit:TouchEffect.PressedOpacity" Value="0.3"/>
+        </Style>
+
+        <Style x:Key="DeleteLabelStyle" TargetType="Label" ApplyToDerivedTypes="True" BasedOn="{StaticResource OpacityTouchStyle}">
+            <Setter Property="Padding" Value="16, 8"/>
+            <Setter Property="TextColor" Value="Red"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="Text" Value="{markups:Localize Delete}"/>
+        </Style>
+
+        <Style x:Key="TaskCardStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="HasShadow">
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="Android" Value="True"/>
+                    <On Platform="iOS" Value="False"/>
+                </OnPlatform>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TaskStatusRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+        </Style>
     </Application.Resources>
-</Application>
+</modularity:PrismApplication>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ToDoListDemo.Controls.TaskStatusView"
+    x:Name="ThisControl">
+    <Frame
+        BackgroundColor="LightGray"
+        CornerRadius="8"
+        HasShadow="False"
+        IsClippedToBounds="True"
+        Padding="8, 4">
+        <Frame.Triggers>
+            <MultiTrigger TargetType="Frame">
+                <MultiTrigger.Conditions>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=IsActive}" Value="True"/>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=Status}" Value="Open"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BackgroundColor" Value="{StaticResource OpenTaskColor}"/>
+            </MultiTrigger>
+            <MultiTrigger TargetType="Frame">
+                <MultiTrigger.Conditions>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=IsActive}" Value="True"/>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=Status}" Value="InProcess"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BackgroundColor" Value="{StaticResource InProcessTaskColor}"/>
+            </MultiTrigger>
+            <MultiTrigger TargetType="Frame">
+                <MultiTrigger.Conditions>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=IsActive}" Value="True"/>
+                    <BindingCondition Binding="{Binding Source={x:Reference ThisControl}, Path=Status}" Value="Finished"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BackgroundColor" Value="{StaticResource FinishedTaskColor}"/>
+            </MultiTrigger>
+        </Frame.Triggers>
+        <Label
+            x:Name="StatusNameLabel"
+            TextColor="White"
+            FontSize="14"/>
+    </Frame>
+</ContentView>

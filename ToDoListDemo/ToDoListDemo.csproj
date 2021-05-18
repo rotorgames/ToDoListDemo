@@ -20,6 +20,7 @@
     <ProjectReference Include="..\ToDoListDemo.Abstractions\ToDoListDemo.Abstractions.csproj" />
     <ProjectReference Include="..\ToDoListDemo.Services\ToDoListDemo.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Views\Base\" />
@@ -27,6 +28,9 @@
     <Folder Include="LocalizableResources\" />
     <Folder Include="Markups\" />
     <Folder Include="Controls\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="LocalizableResources\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

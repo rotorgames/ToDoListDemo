@@ -46,5 +46,107 @@ namespace ToDoListDemo.LocalizableResources {
                 resourceCulture = value;
             }
         }
+        
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        internal static string Deleting {
+            get {
+                return ResourceManager.GetString("Deleting", resourceCulture);
+            }
+        }
+        
+        internal static string Creating {
+            get {
+                return ResourceManager.GetString("Creating", resourceCulture);
+            }
+        }
+        
+        internal static string Editing {
+            get {
+                return ResourceManager.GetString("Editing", resourceCulture);
+            }
+        }
+        
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        internal static string Tasks {
+            get {
+                return ResourceManager.GetString("Tasks", resourceCulture);
+            }
+        }
+        
+        internal static string TaskStatusOpen {
+            get {
+                return ResourceManager.GetString("TaskStatusOpen", resourceCulture);
+            }
+        }
+        
+        internal static string TaskStatusInProcess {
+            get {
+                return ResourceManager.GetString("TaskStatusInProcess", resourceCulture);
+            }
+        }
+        
+        internal static string TaskStatusFinished {
+            get {
+                return ResourceManager.GetString("TaskStatusFinished", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        internal static string NoTasks {
+            get {
+                return ResourceManager.GetString("NoTasks", resourceCulture);
+            }
+        }
+        
+        internal static string TaskNameIsRequired {
+            get {
+                return ResourceManager.GetString("TaskNameIsRequired", resourceCulture);
+            }
+        }
     }
 }

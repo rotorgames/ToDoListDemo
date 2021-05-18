@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:ContentPageBase
+    x:Class="ToDoListDemo.Views.TaskEditorView"
+    xmlns:base="clr-namespace:ToDoListDemo.Views.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markups="clr-namespace:ToDoListDemo.Markups"
+    xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:controls="clr-namespace:ToDoListDemo.Controls"
+    xmlns:taskabs="clr-namespace:ToDoListDemo.Abstractions.Tasks;assembly=ToDoListDemo.Abstractions"
+    Title="{markups:Localize Creating}">
+
+    <base:ContentPageBase.ToolbarItems>
+        <ToolbarItem
+            Text="{markups:Localize Save}"
+            Command="{Binding SaveCommand}"/>
+    </base:ContentPageBase.ToolbarItems>
+
+    <base:ContentPageBase.Triggers>
+        <DataTrigger Binding="{Binding IsNew}" Value="False" TargetType="base:ContentPageBase">
+            <Setter Property="Title" Value="{markups:Localize Editing}"/>
+        </DataTrigger>
+    </base:ContentPageBase.Triggers>
+
+    <Grid
+        toolkit:SafeAreaEffect.SafeArea="False, False, False, True"
+        Margin="16, 8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Entry
+            Grid.Row="0"
+            Text="{Binding Name}"
+            Placeholder="{markups:Localize Name}"/>
+
+        <controls:AdjustedContainer
+            Grid.Row="1"
+            MinHeight="150"
+            MaxHeight="40%">
+            <Editor
+                Text="{Binding Description}"
+                AutoSize="TextChanges"
+                Placeholder="{markups:Localize Description}"/>
+        </controls:AdjustedContainer>
+        <Grid
+            Grid.Row="2"
+            Padding="0, 8, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <controls:TaskStatusView
+                Grid.Column="0"
+                Style="{StaticResource OpacityTouchStyle}"
+                toolkit:TouchEffect.Command="{Binding SetStatusCommand}"
+                toolkit:TouchEffect.CommandParameter="{x:Static taskabs:TaskStatus.Open}"
+                IsActive="False"
+                Status="Open"
+                HorizontalOptions="StartAndExpand">
+                <controls:TaskStatusView.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Open" TargetType="controls:TaskStatusView">
+                        <Setter Property="IsActive" Value="True"/>
+                    </DataTrigger>
+                </controls:TaskStatusView.Triggers>
+            </controls:TaskStatusView>
+            <controls:TaskStatusView
+                Grid.Column="1"
+                Style="{StaticResource OpacityTouchStyle}"
+                toolkit:TouchEffect.Command="{Binding SetStatusCommand}"
+                toolkit:TouchEffect.CommandParameter="{x:Static taskabs:TaskStatus.InProcess}"
+                IsActive="False"
+                Status="InProcess"
+                HorizontalOptions="CenterAndExpand">
+                <controls:TaskStatusView.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="InProcess" TargetType="controls:TaskStatusView">
+                        <Setter Property="IsActive" Value="True"/>
+                    </DataTrigger>
+                </controls:TaskStatusView.Triggers>
+            </controls:TaskStatusView>
+            <controls:TaskStatusView
+                Grid.Column="2"
+                Style="{StaticResource OpacityTouchStyle}"
+                toolkit:TouchEffect.Command="{Binding SetStatusCommand}"
+                toolkit:TouchEffect.CommandParameter="{x:Static taskabs:TaskStatus.Finished}"
+                IsActive="False"
+                Status="Finished"
+                HorizontalOptions="EndAndExpand">
+                <controls:TaskStatusView.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Finished" TargetType="controls:TaskStatusView">
+                        <Setter Property="IsActive" Value="True"/>
+                    </DataTrigger>
+                </controls:TaskStatusView.Triggers>
+            </controls:TaskStatusView>
+        </Grid>
+
+        <Label
+            Grid.Row="3"
+            IsVisible="{Binding IsNew, Converter={StaticResource InvertedBoolConverter}}"
+            Style="{StaticResource DeleteLabelStyle}"
+            toolkit:TouchEffect.Command="{Binding DeleteCommand}"
+            Margin="16, 8"/>
+    </Grid>
+</base:ContentPageBase>

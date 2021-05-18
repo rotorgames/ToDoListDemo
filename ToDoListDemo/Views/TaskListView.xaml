@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:ContentPageBase
+    xmlns:base="clr-namespace:ToDoListDemo.Views.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markups="clr-namespace:ToDoListDemo.Markups"
+    xmlns:controls="clr-namespace:ToDoListDemo.Controls"
+    xmlns:xftoolkit="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:models="clr-namespace:ToDoListDemo.Models"
+    x:Class="ToDoListDemo.Views.TaskListView"
+    x:Name="ThisPage"
+    Title="{markups:Localize Tasks}">
+    <base:ContentPageBase.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="ic_add.png"
+            Command="{Binding CreateTaskCommand}"/>
+    </base:ContentPageBase.ToolbarItems>
+    <CollectionView
+        ItemsSource="{Binding Tasks}"
+        RemainingItemsThreshold="10"
+        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+        <CollectionView.Header>
+            <BoxView
+                HeightRequest="8"/>
+        </CollectionView.Header>
+        <CollectionView.Footer>
+            <ContentView
+                xftoolkit:SafeAreaEffect.SafeArea="False, False, False, True">
+                <BoxView/>
+            </ContentView>
+        </CollectionView.Footer>
+        <CollectionView.EmptyView>
+            <Label
+                Text="{markups:Localize NoTasks}"
+                Padding="18"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand"
+                FontSize="14"
+                TextColor="Gray"/>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <ContentView
+                    Padding="16, 8">
+                    <Frame
+                        x:DataType="models:TaskItem"
+                        Style="{StaticResource TaskCardStyle}"
+                        xftoolkit:TouchEffect.IsAvailable="True"
+                        xftoolkit:TouchEffect.NativeAnimation="True"
+                        CornerRadius="4"
+                        Padding="16">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.EditTaskCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <Grid
+                            RowSpacing="6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                FontSize="18"
+                                TextColor="{StaticResource PrimaryColor}"/>
+
+                            <controls:TaskStatusView
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Status="{Binding Status}"/>
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding Description}"
+                                FontSize="14"
+                                TextColor="Gray"/>
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding Task.CreatingDate}"
+                                FontSize="12"
+                                TextColor="Gray"/>
+                        </Grid>
+                    </Frame>
+                </ContentView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</base:ContentPageBase>
