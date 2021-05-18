@@ -20,6 +20,10 @@
     <ProjectReference Include="..\ToDoListDemo.Abstractions\ToDoListDemo.Abstractions.csproj" />
     <ProjectReference Include="..\ToDoListDemo.Services\ToDoListDemo.Services.csproj" />
   </ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="ViewModels\Base\" />
     <Folder Include="LocalizableResources\" />
     <Folder Include="Markups\" />
   <ItemGroup>
