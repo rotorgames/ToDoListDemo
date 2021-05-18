@@ -26,6 +26,7 @@
     <Folder Include="ViewModels\Base\" />
     <Folder Include="LocalizableResources\" />
     <Folder Include="Markups\" />
+    <Folder Include="Controls\" />
   <ItemGroup>
     <EmbeddedResource Update="LocalizableResources\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
