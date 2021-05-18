@@ -20,7 +20,6 @@ namespace ToDoListDemo.ViewModels
 
         readonly ObservableRangeCollection<TaskItem> _taskCollection;
 
-        int _loadedItems;
         bool _hasMoreItems = true;
 
         public IReadOnlyList<TaskItem> Tasks => _taskCollection;
@@ -98,15 +97,13 @@ namespace ToDoListDemo.ViewModels
             if (!_hasMoreItems)
                 return;
             
-            var tasks = await _taskStorageService.GetTasksAsync(_loadedItems, ItemsPerLoad);
+            var tasks = await _taskStorageService.GetTasksAsync(_taskCollection.Count, ItemsPerLoad);
 
             if(tasks.Count < ItemsPerLoad)
                 _hasMoreItems = false;
 
             if (!tasks.Any())
                 return;
-
-            _loadedItems += tasks.Count;
 
             _taskCollection.AddRange(tasks.Select(t => new TaskItem(t)));
         }
