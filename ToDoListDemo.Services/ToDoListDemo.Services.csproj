@@ -7,4 +7,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ToDoListDemo.Abstractions\ToDoListDemo.Abstractions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tasks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+  </ItemGroup>
 </Project>
